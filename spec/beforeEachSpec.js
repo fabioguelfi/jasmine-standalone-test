@@ -5,7 +5,7 @@ xdescribe("teste do beforeEach", () => {
         contador++
     })
 
-    it("deve incrementar o contador para 1", () => {
+    xit("deve incrementar o contador para 1", () => {
         expect(contador).toEqual(1)
     })
 
