@@ -1,11 +1,11 @@
-xdescribe("teste do beforeEach", () => {
+describe("teste do beforeEach", () => {
     let contador = 0 
 
     beforeEach(() => {
         contador++
     })
 
-    xit("deve incrementar o contador para 1", () => {
+    it("deve incrementar o contador para 1", () => {
         expect(contador).toEqual(1)
     })
 
@@ -15,6 +15,7 @@ xdescribe("teste do beforeEach", () => {
 
     it("deve incrementar o contador para 3", () => {
         expect(contador).toEqual(3)
+        pending("implementar...")
     })
 
 })
