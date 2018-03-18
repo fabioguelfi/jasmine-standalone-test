@@ -11,15 +11,13 @@ describe("testes do objeto spy", () => {
     }
 
     beforeAll(() => {
-        spyOn(Calculadora, "somar").and.returnValues(1, 5)
+        spyOn(Calculadora, "somar").and.callFake((n1, n2) => n1 - n2)
         spyOn(Calculadora, "subtrair")
     })
 
-    it("deve retornar valores distintos para o metodo somar", () => {
+    it("deve transformar o metodo somar em subtracao", () => {
 
-        expect(Calculadora.somar(3, 4)).toEqual(1)
-        expect(Calculadora.somar(3,3)).toEqual(5)
-        expect(Calculadora.somar(4,4)).toBeUndefined()
+        expect(Calculadora.somar(5,2)).toEqual(3)
 
     })
 
