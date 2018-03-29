@@ -14,9 +14,12 @@ describe("testes do objeto spy", () => {
         spyOn(Calculadora, "somar").and.throwError("erro");
     })
 
-    it("deve demonstrar o uso do call.any", () => {
-        Calculadora.somar(1, 1);
-        expect(Calculadora.somar.calls.any()).toBeTruthy();
-    })
+    // count how long time this method is call on run
+   it("deve demonstrar o uso do call.count", () => {
+       Calculadora.somar(1,1)
+       Calculadora.somar(2,2);
+
+       expect(Calculadora.somar.calls.count()).toEqual(2);
+   })
 
 })
