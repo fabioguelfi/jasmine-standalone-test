@@ -1,16 +1,12 @@
-describe("testes do objeto jasmine.createSpy", () => {
+describe("testes do objeto jasmine.createSpyObject", () => {
 
-    let somar;
+    let Calculadora;
 
     beforeAll(() => {
-        somar = jasmine.createSpy("somar")
-    })
+        Calculadora =  jasmine.createSpyObject("Calculadora", 
+        ["somar", "subtrair"])
 
-    it("deve demonstrar o uso do jasmine.createSpy", () => {
-        somar(1, 2);
-
-        expect(somar).toHaveBeenCalled()
-        expect(somar).toHaveBeenCalledWith(1, 2)
+        Calculadora.somar.and.return(5)
 
     })
 
