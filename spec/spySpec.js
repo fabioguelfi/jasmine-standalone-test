@@ -1,33 +1,16 @@
-describe("testes do objeto spy", () => {
+describe("testes do objeto jasmine.createSpy", () => {
 
-    let Calculadora = {
-        somar: (n1, n2) => {
-            return n1 + n2
-        },
-
-        subtrair: (n1, n2) => {
-            return n1 - n2
-        }
-    }
+    let somar;
 
     beforeAll(() => {
-        spyOn(Calculadora, "somar").and.returnValue(10)
-        spyOn(Calculadora, "subtrair")
+        somar = jasmine.createSpy("somar")
     })
-    // call.reset is reset history on calls object
-    it("deve demonstrar o uso do calls.reset", () => {
 
-        Calculadora.somar(1, 1)
-        Calculadora.somar(2, 2)
+    it("deve demonstrar o uso do jasmine.createSpy", () => {
+        somar(1, 2);
 
-        // check is call one time just
-        expect(Calculadora.somar.calls.any()).toBeTruthy()
-
-        // will reset call history
-        Calculadora.somar.call.reset()
-
-        // now Calculadores.somar not is call more
-        expect(Calculadora.somar.calls.any()).toBeFalsy()
+        expect(somar).toHaveBeenCalled()
+        expect(somar).toHaveBeenCalledWith(1, 2)
 
     })
 
