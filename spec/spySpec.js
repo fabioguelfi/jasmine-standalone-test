@@ -11,17 +11,21 @@ describe("testes do objeto spy", () => {
     }
 
     beforeAll(() => {
-        spyOn(Calculadora, "somar").and.throwError("erro");
+        spyOn(Calculadora, "somar").and.returnValue(10)
+        spyOn(Calculadora, "subtrair")
     })
 
-    // analise all params
-    it("deve demonstrar o uso do calls.AllArgs", () => {
+    // return all information about call [object, args, value]
+    it("deve demonstrar o uso do calls.alls", () => {
 
         Calculadora.somar(1, 1)
         Calculadora.somar(2, 2)
 
-        expect(Calculadora.somar.calls.allArgs())
-            .toEqual([[1, 1], [2, 2]])
+        let retorno = Calculadora.somar.calls.all();
+
+        expect(retorno[1].object).toEqual(Calculadora);
+        expect(retorno[1].args).toEqual([2, 2])
+        expect(retorno[1].returnValue).toEqual(10)
 
     })
 
