@@ -11,14 +11,12 @@ describe("testes do objeto spy", () => {
     }
 
     beforeAll(() => {
-        spyOn(Calculadora, "somar").and.callFake((n1, n2) => {
-          return n1 - n2;
-        })
-        spyOn(Calculadora, "subtrair")
+        spyOn(Calculadora, "somar").and.throwError("erro");
     })
 
-    it("deve transformar o metodo somar em subtracao", () => {
-        expect(Calculadora.somar(5,2)).toEqual(3)
+    it("deve lancar o erro ao somar", () => {
+        expect(() => Calculadora.somar(1,1))
+        .throwError("erro");
     })
 
 })
