@@ -14,19 +14,20 @@ describe("testes do objeto spy", () => {
         spyOn(Calculadora, "somar").and.returnValue(10)
         spyOn(Calculadora, "subtrair")
     })
-
-    // return first call method to analize in matchers 
-    // return object with all props on first call about calls.all
-    it("deve demonstrar o uso do calls.first", () => {
+    // call.reset is reset history on calls object
+    it("deve demonstrar o uso do calls.reset", () => {
 
         Calculadora.somar(1, 1)
         Calculadora.somar(2, 2)
 
-        let retorno = Calculadora.somar.calls.first()
+        // check is call one time just
+        expect(Calculadora.somar.calls.any()).toBeTruthy()
 
-        expect(retorno.object).toEqual(Calculadora)
-        expect(retorno.args).toEqual([1,1])
-        expect(retorno.returnValue).toEqual(10)
+        // will reset call history
+        Calculadora.somar.call.reset()
+
+        // now Calculadores.somar not is call more
+        expect(Calculadora.somar.calls.any()).toBeFalsy()
 
     })
 
