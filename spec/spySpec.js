@@ -15,17 +15,18 @@ describe("testes do objeto spy", () => {
         spyOn(Calculadora, "subtrair")
     })
 
-    // return all information about call [object, args, value]
-    it("deve demonstrar o uso do calls.alls", () => {
+    // return last last call method to analize in matchers 
+    // return object with all props on last call about calls.all
+    it("deve demonstrar o uso do calls.mostRecent", () => {
 
         Calculadora.somar(1, 1)
         Calculadora.somar(2, 2)
 
-        let retorno = Calculadora.somar.calls.all();
+        let retorno = Calculadora.somar.calls.mostRecent()
 
-        expect(retorno[1].object).toEqual(Calculadora);
-        expect(retorno[1].args).toEqual([2, 2])
-        expect(retorno[1].returnValue).toEqual(10)
+        expect(retorno.object).toEqual(Calculadora)
+        expect(retorno.args).toEqual([2, 2])
+        expect(retorno.returnValue).toEqual(10)
 
     })
 
