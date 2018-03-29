@@ -1,21 +1,32 @@
-describe("testes do objeto jasmine.stringMAtching", () => {
+describe("testes do objeto jasmine.clock", () => {
 
-    let exibirTexto
-
-    beforeAll(() => {
-        exibirTexto = jasmine.createSpy("exibirTexto")
+    beforeEach(() => {
+        jasmine.clock().install
     })
 
-    it("deve demonstrar o uso do jasmine.stringMatching", () => {
-        exibirTexto("curso de Jasmine")
+    afterEach(() => {
+        jasmine.clock().uninstall()
+    })
 
-        expect(exibirTexto).toHaveBeenCalledWith(
-            jasmine.stringMatching("Jasmine"));
-        expect(exibirTexto).toHaveBeenCalledWith(
-            jasmine.stringMatching(/jasmine/i));
-        expect("CUrso de Javascript").toEqual(
-            jasmine.stringMatching("Javascript"));    
+    let dobro
 
+    beforeAll(() => {
+        dobro = jasmine.createSpy("dobro")
+    })
+
+    it("deve demonstrar o uso com o setTimeOut", () => {
+        setTimeout(() => {
+            dobro(10)
+        }, 1000)
+        jasmine.clock().tick(1001)
+        expect(dobro).toHaveBeenCalled();
+    })
+
+    it("deve demonstrar o uso com o setInterval", () => {
+        setInterval(() => {
+            jasmine.clock().tick();
+            expect(dobro).toHaveBeenCalled()
+        }, 500)
     })
 
 })
